@@ -9,7 +9,7 @@ namespace Resgrid.Providers.GeoLocationProvider
 		public Geometry coordinates { get; set; }
 		public string language { get; set; }
 		public string map { get; set; }
-		public dynamic bounds { get; set; }
+		public dynamic square { get; set; }
 	}
 
 	public class ReverseW3WResponse
@@ -19,7 +19,7 @@ namespace Resgrid.Providers.GeoLocationProvider
 		public Geometry coordinates { get; set; }
 		public string language { get; set; }
 		public string map { get; set; }
-		public dynamic bounds { get; set; }
+		public dynamic square { get; set; }
 	}
 
 	public class Geometry

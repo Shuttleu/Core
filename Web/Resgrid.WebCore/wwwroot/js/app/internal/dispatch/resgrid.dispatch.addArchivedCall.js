@@ -27,7 +27,7 @@ var resgrid;
                 });
 
                 const tiles1 = L.tileLayer(
-                    osmTileUrl,
+                    osmTileUrl+window['rgOsmKey'],
                     {
                         maxZoom: 19,
                         attribution: osmTileAttribution

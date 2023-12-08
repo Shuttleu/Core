@@ -167,7 +167,7 @@
 			});
 
 			const tiles1 = L.tileLayer(
-				'@Resgrid.Config.MappingConfig.GetWebsiteOSMUrl()',
+				'@Resgrid.Config.MappingConfig.GetWebsiteOSMUrl()'+window['rgOsmKey'],
 				{
 					maxZoom: 19,
 					attribution:
