@@ -510,7 +510,10 @@
 
                                                 <div class="chat-message well">
                                                     <span class="input-box input-group">
-                                                        <input placeholder="@localizer["AddNotePlaceholder"]" type="text" class="form-control input-small" name="note-box1" id="note-box1" />
+                                                        <div id="note-container" style="width:100%; height: 300px;">
+
+                                                        </div>
+
                                                         <span class="input-group-btn">
                                                             <button class="btn btn-success btn-small" type="button" onclick="resgrid.dispatch.viewcall.addCallNote1()" id="note-box-submit1">@localizer["AddNote"]</button>
                                                         </span>
@@ -676,7 +679,7 @@
 
                                 <div class="chat-message well">
                                     <span class="input-box input-group">
-                                        <input placeholder="@localizer["AddNotePlaceholder"]" type="text" class="form-control input-small" name="note-box" id="note-box" />
+                                        <textarea placeholder="@localizer["AddNotePlaceholder"]" class="form-control input-small" name="note-box" id="note-box" ></textarea>
                                         <span class="input-group-btn">
                                             <button class="btn btn-success btn-small" type="button" onclick="resgrid.dispatch.viewcall.addCallNote()" id="note-box-submit">@localizer["AddNote"]</button>
                                         </span>

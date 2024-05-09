@@ -8,6 +8,18 @@ var resgrid;
 			$(document).ready(function () {
                 callMarker = null;
                 map = null;
+
+                noteQuillDescription = new Quill('#note-container', {
+                    placeholder: '',
+                    theme: 'snow'
+                });
+
+                $(document).on('submit', '#newCallForm', function () {
+                    $('#Call_Notes').val(noteQuillDescription.root.innerHTML);
+
+                    return true;
+                });
+
 				$.ajax({
 					url: resgrid.absoluteBaseUrl + '/User/Dispatch/GetMapDataForCall?callId=' + callId,
 					contentType: 'application/json; charset=utf-8',
@@ -34,18 +46,6 @@ var resgrid;
 					infinite: true,
 					speed: 500,
 					adaptiveHeight: true
-				});
-
-				$("#note-box").keyup(function (event) {
-					if (event.keyCode === 13) {
-						$("#note-box-submit").click();
-					}
-				});
-
-				$("#note-box1").keyup(function (event) {
-					if (event.keyCode === 13) {
-						$("#note-box-submit1").click();
-					}
 				});
 
 				viewcall.player = new Plyr('#player');
@@ -97,12 +97,12 @@ var resgrid;
 					url: resgrid.absoluteBaseUrl + '/User/Dispatch/AddCallNote',
 					data: JSON.stringify({
 						CallId: callId,
-						Note: $('#note-box1').val()
+						Note: noteQuillDescription.root.innerHTML
 					}),
 					contentType: 'application/json',
 					type: 'POST'
 				}).done(function (data) {
-					$('#note-box1').val('');
+                    noteQuillDescription.root.innerHTML = '';
 					getCallNotes(true);
 				});
 			}

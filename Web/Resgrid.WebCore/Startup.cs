@@ -54,8 +54,8 @@ namespace Resgrid.Web
 {
 	public class Startup
 	{
-        //public IConfiguration Configuration { get; }
-        public IConfigurationRoot Configuration { get; private set; }
+		//public IConfiguration Configuration { get; }
+		public IConfigurationRoot Configuration { get; private set; }
 		public ILifetimeScope AutofacContainer { get; private set; }
 		public AutofacServiceLocator Locator { get; private set; }
 		public IServiceCollection Services { get; private set; }
@@ -314,7 +314,7 @@ namespace Resgrid.Web
 				pipeline.MinifyCssFiles("/css/**/*.css");
 
 				// Public (external website) public style bundles
-				pipeline.AddCssBundle("/css/pub-bundle.css", "css/style.css", "css/animate.css", "css/pricing/pricing-tables.css", "lib/font-awesome/css/font-awesome.min.css");
+				pipeline.AddCssBundle("/css/pub-bundle.css", "css/style.css", "css/animate.css", "lib/font-awesome/css/font-awesome.min.css");
 
 				// Angular App code
 				pipeline.AddJavaScriptBundle("/js/ng/app.js", "js/ng/vendor.js", "js/ng/runtime.js", "js/ng/polyfills.js", "js/ng/main.js");
