@@ -208,8 +208,8 @@ namespace Resgrid.Services
 				}
 				else if (plan == null || plan.PlanId == 1)
 				{
-					limits.PersonnelLimit = 10;
-					limits.UnitsLimit = 10;
+					limits.PersonnelLimit = 1000;
+					limits.UnitsLimit = 1000;
 
 					return limits;
 				}

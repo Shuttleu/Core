@@ -40,11 +40,11 @@
 		#endregion Azure Service Bus Values
 
 		#region RabbitMQ Bus Values
-		public static string RabbitHostname = "rgdevinfaserver";
+		public static string RabbitHostname = "rabbitmq";
 		public static string RabbitHostname2 = ""; // For 3 host cluster, node 2
 		public static string RabbitHostname3 = ""; // For 3 host cluster, node 3
-		public static string RabbitUsername = "";
-		public static string RabbbitPassword = "";
+		public static string RabbitUsername = "resgrid";
+		public static string RabbbitPassword = "Resgrid321!";
 		public static string RabbbitExchange = "";
 		#endregion RabbitMQ Bus Values
 	}

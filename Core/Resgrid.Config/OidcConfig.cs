@@ -8,7 +8,7 @@ namespace Resgrid.Config
 	{
 		public static string Key = "";
 
-		public static string ConnectionString = "Server=rgdevserver;Database=ResgridOIDC;User Id=resgrid_odic;Password=resgrid123;MultipleActiveResultSets=True;TrustServerCertificate=True;";
+		public static string ConnectionString = "Server=db;Database=ResgridOIDC;User Id=sa;Password=Resgrid123!!;MultipleActiveResultSets=True;TrustServerCertificate=true;";
 
 		public static int AccessTokenExpiryMinutes = 1440;
 

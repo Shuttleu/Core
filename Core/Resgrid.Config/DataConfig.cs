@@ -2,9 +2,9 @@
 {
 	public class DataConfig
 	{
-		public static string ConnectionString = "Server=rgdevserver;Database=Resgrid;User Id=resgrid_app;Password=resgrid123;MultipleActiveResultSets=True;TrustServerCertificate=True;";
+		public static string ConnectionString = "Server=db;Database=Resgrid;User Id=sa;Password=Resgrid123!!;MultipleActiveResultSets=True;TrustServerCertificate=True;Connection Timeout=30;";
 
-		public static string NoSqlConnectionString = "mongodb://resgrid:resgrid123@rgdevserver:27017";
+		public static string NoSqlConnectionString = "mongodb://resgridUser:Resgrid123!!@mongodb:27017";
 		public static string NoSqlDatabaseName = "resgrid";
 		public static string NoSqlApplicationName = "Resgrid";
 

@@ -1,0 +1,112 @@
+diff --git a/Core/Resgrid.Config/CacheConfig.cs b/Core/Resgrid.Config/CacheConfig.cs
+index e1cb173..a0e8f48 100644
+--- a/Core/Resgrid.Config/CacheConfig.cs
++++ b/Core/Resgrid.Config/CacheConfig.cs
+@@ -2,7 +2,7 @@
+ {
+ 	public static class CacheConfig
+ 	{
+-		public static string RedisConnectionString = "rgdevinfaserver,abortConnect=false,syncTimeout=10000";
++		public static string RedisConnectionString = "redis:6379,Password=,allowAdmin=True";
+ 		public static string ApiBearerTokenKeyName = "_ApiBarerToken";
+ 		public static string WebsiteSessionKeyNamePrefix = $"RGWebAuthSession-";
+ 	}
+diff --git a/Core/Resgrid.Config/DataConfig.cs b/Core/Resgrid.Config/DataConfig.cs
+index 3e2f454..0ca024d 100644
+--- a/Core/Resgrid.Config/DataConfig.cs
++++ b/Core/Resgrid.Config/DataConfig.cs
+@@ -2,9 +2,9 @@
+ {
+ 	public class DataConfig
+ 	{
+-		public static string ConnectionString = "Server=rgdevserver;Database=Resgrid;User Id=resgrid_app;Password=resgrid123;MultipleActiveResultSets=True;TrustServerCertificate=True;";
++		public static string ConnectionString = "Server=db;Database=Resgrid;User Id=sa;Password=Resgrid123!!;MultipleActiveResultSets=True;TrustServerCertificate=True;Connection Timeout=30;";
+ 
+-		public static string NoSqlConnectionString = "mongodb://resgrid:resgrid123@rgdevserver:27017";
++		public static string NoSqlConnectionString = "mongodb://resgridUser:Resgrid123!!@mongodb:27017";
+ 		public static string NoSqlDatabaseName = "resgrid";
+ 		public static string NoSqlApplicationName = "Resgrid";
+ 
+diff --git a/Core/Resgrid.Config/OidcConfig.cs b/Core/Resgrid.Config/OidcConfig.cs
+index 45b8cd9..550b072 100644
+--- a/Core/Resgrid.Config/OidcConfig.cs
++++ b/Core/Resgrid.Config/OidcConfig.cs
+@@ -8,7 +8,7 @@ namespace Resgrid.Config
+ 	{
+ 		public static string Key = "";
+ 
+-		public static string ConnectionString = "Server=rgdevserver;Database=ResgridOIDC;User Id=resgrid_odic;Password=resgrid123;MultipleActiveResultSets=True;TrustServerCertificate=True;";
++		public static string ConnectionString = "Server=db;Database=ResgridOIDC;User Id=sa;Password=Resgrid123!!;MultipleActiveResultSets=True;TrustServerCertificate=true;";
+ 
+ 		public static int AccessTokenExpiryMinutes = 1440;
+ 
+diff --git a/Core/Resgrid.Config/ServiceBusConfig.cs b/Core/Resgrid.Config/ServiceBusConfig.cs
+index 041195f..c144d35 100644
+--- a/Core/Resgrid.Config/ServiceBusConfig.cs
++++ b/Core/Resgrid.Config/ServiceBusConfig.cs
+@@ -40,11 +40,11 @@
+ 		#endregion Azure Service Bus Values
+ 
+ 		#region RabbitMQ Bus Values
+-		public static string RabbitHostname = "rgdevinfaserver";
++		public static string RabbitHostname = "rabbitmq";
+ 		public static string RabbitHostname2 = ""; // For 3 host cluster, node 2
+ 		public static string RabbitHostname3 = ""; // For 3 host cluster, node 3
+-		public static string RabbitUsername = "";
+-		public static string RabbbitPassword = "";
++		public static string RabbitUsername = "resgrid";
++		public static string RabbbitPassword = "Resgrid321!";
+ 		public static string RabbbitExchange = "";
+ 		#endregion RabbitMQ Bus Values
+ 	}
+diff --git a/Core/Resgrid.Config/WorkerConfig.cs b/Core/Resgrid.Config/WorkerConfig.cs
+index 43ea2c8..769a3dd 100644
+--- a/Core/Resgrid.Config/WorkerConfig.cs
++++ b/Core/Resgrid.Config/WorkerConfig.cs
+@@ -2,7 +2,7 @@
+ {
+ 	public static class WorkerConfig
+ 	{
+-		public static string WorkerDbConnectionString = "Server=rgdevserver;Database=ResgridWorkers;User Id=resgrid_workers;Password=resgrid123;MultipleActiveResultSets=True;";
++		public static string WorkerDbConnectionString = "Data Source=db;Initial Catalog=ResgridWorkers;User Id=sa;Password=Resgrid123!!;MultipleActiveResultSets=True;";
+ 		public static string PayloadKey = "XsBYpdbdHkhuGsU3tvTMawyV6d3M2F8EQ8wQ2jVLBREECQmwngACk2hm4Ykb7eW7Qsm6za8RdJBY5Z3xvN6erYry47nJ5XmL";
+ 	}
+ }
+diff --git a/Core/Resgrid.Services/LimitsService.cs b/Core/Resgrid.Services/LimitsService.cs
+index 8f7f6e5..1acb77d 100644
+--- a/Core/Resgrid.Services/LimitsService.cs
++++ b/Core/Resgrid.Services/LimitsService.cs
+@@ -208,8 +208,8 @@ namespace Resgrid.Services
+ 				}
+ 				else if (plan == null || plan.PlanId == 1)
+ 				{
+-					limits.PersonnelLimit = 10;
+-					limits.UnitsLimit = 10;
++					limits.PersonnelLimit = 1000;
++					limits.UnitsLimit = 1000;
+ 
+ 					return limits;
+ 				}
+diff --git a/Web/Resgrid.WebCore/Areas/User/Views/Dispatch/Dashboard.cshtml b/Web/Resgrid.WebCore/Areas/User/Views/Dispatch/Dashboard.cshtml
+index 034529b..c02bd90 100644
+--- a/Web/Resgrid.WebCore/Areas/User/Views/Dispatch/Dashboard.cshtml
++++ b/Web/Resgrid.WebCore/Areas/User/Views/Dispatch/Dashboard.cshtml
+@@ -54,17 +54,7 @@
+ 
+ <div class="wrapper wrapper-content">
+   <div class="row">
+-    <div class="col-lg-8">
+-      <div class="ibox float-e-margins">
+-        <div class="ibox-title">
+-          <h5>@localizer["UnitStatusesHeader"]</h5>
+-        </div>
+-        <div class="ibox-content">
+-          <div id="unitsStatusesList"></div>
+-        </div>
+-      </div>
+-    </div>
+-    <div class="col-lg-4">
++    <div class="col">
+       <div class="ibox float-e-margins">
+         <div class="ibox-content">
+           <rg-map showbuttons="false" mapheight="330px" departmentId="@ClaimsAuthorizationHelper.GetDepartmentId()" leafletosmurl="@Resgrid.Config.MappingConfig.GetWebsiteOSMUrl()" mapattribution="@Resgrid.Config.MappingConfig.LeafletAttribution"></rg-map>
